@@ -4,7 +4,7 @@
     Author     : Arjun (@raj_arjun)
     Description:
         Function for routing
-*/
+ */
 
 /**
  * Route object
@@ -24,12 +24,32 @@ Route.prototype.settings = function(){
  */
 Route.prototype.init = function(){
   this.routes = blog.routes;
+  this.state = 0;
+  //this.rootUrl = document.location.protocol+'//'+(document.location.hostname||document.location.host);
+  this.rootUrl = blog.baseUrl;
 }
 
 
 var route = new Route();
 $(function(){
+  //Init Routes
   route.init();
+  
+  $('a[href^="/"],a[href^="' + route.rootUrl + '"]').on('click',function(event){
+    var $this = $(this), 
+    url = $this.attr('href'), 
+    title = $this.attr('title')||null, 
+    relativeUrl = $(this).attr('href').replace(route.rootUrl,'');
+    document.location.hash = relativeUrl;
+    event.preventDefault(); 
+    
+    History.pushState({
+      state: route.state++
+    }, title, relativeUrl); // logs {state:1}, "State 1", "?state=1"
+
+    
+    return false;
+  });
   
 });
 
@@ -49,22 +69,13 @@ $(function(){
   History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
     var State = History.getState(); // Note: We are using History.getState() instead of event.state
     History.log(State.data, State.title, State.url);
+    //Call Router
   });
 
 //  // Change our States
 //  History.pushState({
 //    state:1
 //  }, "State 1", "?state=1"); // logs {state:1}, "State 1", "?state=1"
-//  History.pushState({
-//    state:2
-//  }, "State 2", "?state=2"); // logs {state:2}, "State 2", "?state=2"
-//  History.replaceState({
-//    state:3
-//  }, "State 3", "?state=3"); // logs {state:3}, "State 3", "?state=3"
-//  History.pushState(null, null, "?state=4"); // logs {}, '', "?state=4"
-//  History.back(); // logs {state:3}, "State 3", "?state=3"
-//  History.back(); // logs {state:1}, "State 1", "?state=1"
-//  History.back(); // logs {}, "Home Page", "?"
-//  History.go(2); // logs {state:3}, "State 3", "?state=3"
+
 
 })(window);

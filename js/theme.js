@@ -71,15 +71,33 @@ Theme.prototype.page = function(variables, options){
 
 Theme.prototype.article = function(article, options){
   
+  
+  var settings = $.extend({
+    type : 'teaser'  
+  }, options);
+  
   var output = '';
   
   //Article
-  output += "<article class='post' id='" +  article.id + "'>";
   
-  output += "<h1>" + article.title + "</h1>";
-  output += "<div class='content'>" + article.content + "</div>";  
+  if(settings.type == 'teaser'){
+    output += "<article class='post' id='" +  article.id + "'>";
   
-  output += "</article>";
+    output += "<h1>" + article.title + "</h1>";
+    
+    output += "<div class='content'>" + article.contentSnippet + "</div>";  
+  
+    output += "</article>";
+  }
+  else if(settings.type == 'full'){
+    output += "<article class='post' id='" +  article.id + "'>";
+  
+    output += "<h2>" + article.title + "</h2>";
+    
+    output += "<div class='content'>" + article.content + "</div>";  
+  
+    output += "</article>";
+  }
   
   return output;
 }
@@ -125,8 +143,22 @@ Theme.prototype.menu = function(menus, options){
 
 Theme.prototype.block = function(block, options){
   
-  var output = "<section>";
+  var settings = $.extend({
+    blockId : '',
+    className : ''
+  }, options)
   
+  
+  var output = "<section>";
+  output += "<div id='" + settings.blockId + "' class='block " + settings.className +"'>";
+  
+  output += "<h3>" + block.title + "</h3>";
+  output += "<div class='blockBody'>" + block.content + "</div>";  
+  
+  output += "</div>";
+  output += "<section>";
+  
+  return output;
 }
 
 

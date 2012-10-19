@@ -44,6 +44,10 @@ Feeder.prototype.loadFeed = function(){
   //Set number of entries to load
   feed.setNumEntries(this.blog.numEntries)
   
+  if(this.blog.cache){
+    feed.includeHistoricalEntries();
+  }
+  
   // Calling load sends the request off.  It requires a callback function.  
   feed.load(this.onFeedLoad);
 }
@@ -55,20 +59,13 @@ Feeder.prototype.onFeedLoad = function(data){
   // Our callback function, for when a feed is loaded.
   this.feedData = data.feed;
   if (!data.error) {
-    //    // Grab the container we will put the results into
-    //    var container = document.getElementById("content");
-    //    container.innerHTML = '';
-    //
-    //    // Loop through the feeds, putting the titles onto the page.
-    //    // Check out the result object for a list of properties returned in each entry.
-    //    // http://code.google.com/apis/ajaxfeeds/documentation/reference.html#JSON
-    //    for (var i = 0; i < result.feed.entries.length; i++) {
-    //      var entry = result.feed.entries[i];
-    //      var div = document.createElement("div");
-    //      div.appendChild(document.createTextNode(entry.title));
-    //      container.appendChild(div);
-    //    }
+    // http://code.google.com/apis/ajaxfeeds/documentation/reference.html#JSON
+
     console.log(data, 'Feed');
+  //Add Routes 
+    
+  //Call Router
+    
     
   }
   else{
@@ -77,15 +74,17 @@ Feeder.prototype.onFeedLoad = function(data){
   
 }
 
+/**
+ * Feeder Content Api
+ */
 
 
 /**
- * Feeder Routing
- * Get the current route and Call theme function
+ * Load a node from the XML based on route
  */
-Feeder.prototype.route = function(){
+Feeder.prototype.node_load = function(args){
   
-}
+  }
 
 
 var feeder = new Feeder();
