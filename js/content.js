@@ -14,3 +14,26 @@
 var Content = function(){}
 
 
+/**
+ * Settings
+ */
+Content.prototype.settings = function(){}
+
+
+
+Content.prototype.init = function(){
+  
+}
+
+/**
+ * Extract Article from the Feed Array
+ * @param articleId
+ */
+Content.prototype.loadArticle = function(articleId){
+  
+}
+
+
+
+
+var content = new Content();

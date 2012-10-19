@@ -74,18 +74,6 @@ Feeder.prototype.onFeedLoad = function(data){
   
 }
 
-/**
- * Feeder Content Api
- */
-
-
-/**
- * Load a node from the XML based on route
- */
-Feeder.prototype.node_load = function(args){
-  
-  }
-
 
 var feeder = new Feeder();
 
