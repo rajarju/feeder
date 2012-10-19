@@ -29,6 +29,22 @@ Route.prototype.init = function(){
   this.rootUrl = blog.baseUrl;
 }
 
+/**
+ * Create Routes
+ */
+Route.prototype.create = function(feedData){
+  this.routes = {};
+  
+  for(var i = 0; i < feedData.length; i++){
+    
+    route[feedData[i].link.replace(this.rootUrl, '')] = {
+      articleId : i
+    };
+  }
+  console.log(route, 'Routes Created');
+}
+
+
 
 var route = new Route();
 $(function(){

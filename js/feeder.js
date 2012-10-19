@@ -61,9 +61,9 @@ Feeder.prototype.onFeedLoad = function(data){
   if (!data.error) {
     // http://code.google.com/apis/ajaxfeeds/documentation/reference.html#JSON
 
-    console.log(data, 'Feed');
-  //Add Routes 
-    
+    //console.log(data, 'Feed');
+  //Add Routes - Create all routes
+    route.create(this.feedData.entries);
   //Call Router
     
     
