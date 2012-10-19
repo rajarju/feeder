@@ -7,7 +7,7 @@
 /**
  * Theme object
  */
-function Theme(){}
+var Theme = function(){}
 
 /**
  * Theme Settings
@@ -15,7 +15,7 @@ function Theme(){}
 
 Theme.prototype.settings = function(){
   
-}
+  }
 
 
 /**
@@ -25,16 +25,61 @@ Theme.prototype.settings = function(){
 /**
  * Page Template
  * @param variables variables to show in the page
+ * @param options additional options
  * @returns HTML for page
  */
-Theme.prototype.page = function(variables){
+Theme.prototype.page = function(variables, options){
   
   var output = "";
   
-  output += "<div class='page'>";
+  output += "<div class='page'>";  
+  
+  //Header
+  output += "<header class='page-header' role='banner'>";  
+  output += "</header>";  
+  
+  //Body
+  output += "<div class='main'>";  
+  
+  //Main Content Area
+  output += "<div class='primary' role='main'>";   
+  output += variables.content;
+  output += "</div>";  
+  
+  //Sidebar
+  output += "<aside class='sidebar' role='complementary'>";   
+  output += variables.sidebar;
+  output += "</aside>";  
+  
+  //Footer
+  output += "<footer class='page-footer' role='contentinfo'>";  
+  output += "</footer>";  
   
   output += "</div>";
   
+  
+  return output;
+}
+
+
+/**
+ * Template for indivisual articles
+ * @param article the article object
+ * @param options additional options
+ * @return HTML article
+ */
+
+Theme.prototype.article = function(article, options){
+  
+  var output = '';
+  
+  //Article
+  output += "<article class='post' id='" +  article.id + "'>";
+  
+  output += "<h1>" + article.title + "</h1>";
+  output += "<div class='content'>" + article.content + "</div>";  
+  
+  output += "</article>";
   
   return output;
 }
@@ -76,3 +121,26 @@ Theme.prototype.menu = function(menus, options){
   
   return output;
 }
+
+
+Theme.prototype.block = function(block, options){
+  
+  var output = "<section>";
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * Init Theme object
+ */
+var theme = new Theme();

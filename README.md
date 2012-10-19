@@ -6,5 +6,5 @@ Feeder uses Googles XML Reader Parser to load the RSS and parse it
 Feeder is going to exploit some features from CSS like CSS3 Filters to make the pages to behave like book pages
 
 
-## Static Blog
-You can post your RSS files inside the RSS Directory with all the necessary info and configure it in index.html
+## XML Blog
+You can paste your RSS files inside the RSS Directory with all the necessary info and configure it in index.html
